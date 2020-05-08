@@ -19,4 +19,16 @@ after_success:
     - docker push langhaoz/fibcalc-server
     - docker push langhaoz/fibcalc-nginx
     - docker push langhaoz/fibcalc-worker
-    
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: Fibcalc
+    env: Fibcalc-env
+    bucket_name: elasticbeanstalk-us-east-2-330549758279
+    bucket_path: fibcalc
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
